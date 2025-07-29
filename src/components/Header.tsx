@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -106,11 +107,11 @@ const Header = () => {
                         <div className="grid gap-2 p-4 w-[400px]">
                           {item.submenu.map((subItem, subIndex) => (
                             <NavigationMenuLink
+                              asChild
                               key={subIndex}
-                              href={subItem.href}
                               className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                             >
-                              <div className="text-sm font-medium leading-none">{subItem.label}</div>
+                              <Link to={subItem.href}>{subItem.label}</Link>
                             </NavigationMenuLink>
                           ))}
                         </div>
@@ -118,10 +119,10 @@ const Header = () => {
                     </>
                   ) : (
                     <NavigationMenuLink
-                      href={item.href}
+                      asChild
                       className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
                     >
-                      {item.label}
+                      <Link to={item.href}>{item.label}</Link>
                     </NavigationMenuLink>
                   )}
                 </NavigationMenuItem>
@@ -153,25 +154,25 @@ const Header = () => {
                         </button>
                         <div className="pl-4 space-y-2">
                           {item.submenu.map((subItem, subIndex) => (
-                            <a
+                            <Link
                               key={subIndex}
-                              href={subItem.href}
+                              to={subItem.href}
                               className="block text-sm text-muted-foreground hover:text-foreground py-1"
                               onClick={() => setIsOpen(false)}
                             >
                               {subItem.label}
-                            </a>
+                            </Link>
                           ))}
                         </div>
                       </div>
                     ) : (
-                      <a
-                        href={item.href}
+                      <Link
+                        to={item.href}
                         className="block text-sm font-medium py-2 hover:text-primary"
                         onClick={() => setIsOpen(false)}
                       >
                         {item.label}
-                      </a>
+                      </Link>
                     )}
                   </div>
                 ))}
