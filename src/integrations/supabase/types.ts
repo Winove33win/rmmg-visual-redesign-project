@@ -62,12 +62,123 @@ export type Database = {
         }
         Relationships: []
       }
+      participacoes: {
+        Row: {
+          certificado_url: string | null
+          created_at: string | null
+          dados_formulario: Json | null
+          data_participacao: string | null
+          id: string
+          pep_id: string
+          status: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          certificado_url?: string | null
+          created_at?: string | null
+          dados_formulario?: Json | null
+          data_participacao?: string | null
+          id?: string
+          pep_id: string
+          status?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          certificado_url?: string | null
+          created_at?: string | null
+          dados_formulario?: Json | null
+          data_participacao?: string | null
+          id?: string
+          pep_id?: string
+          status?: string | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "participacoes_pep_id_fkey"
+            columns: ["pep_id"]
+            isOneToOne: false
+            referencedRelation: "peps"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      peps: {
+        Row: {
+          ativo: boolean | null
+          created_at: string | null
+          descricao: string
+          id: string
+          nome: string
+        }
+        Insert: {
+          ativo?: boolean | null
+          created_at?: string | null
+          descricao: string
+          id?: string
+          nome: string
+        }
+        Update: {
+          ativo?: boolean | null
+          created_at?: string | null
+          descricao?: string
+          id?: string
+          nome?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          cnpj: string
+          created_at: string | null
+          email: string
+          id: string
+          nome_completo: string
+          telefone: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          cnpj: string
+          created_at?: string | null
+          email: string
+          id?: string
+          nome_completo: string
+          telefone?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          cnpj?: string
+          created_at?: string | null
+          email?: string
+          id?: string
+          nome_completo?: string
+          telefone?: string | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_profile_by_cnpj: {
+        Args: { cnpj_input: string }
+        Returns: {
+          id: string
+          user_id: string
+          nome_completo: string
+          email: string
+          telefone: string
+          cnpj: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
