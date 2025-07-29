@@ -152,7 +152,11 @@ const AreaRestrita = () => {
                         <p className="text-sm">{profile?.cnpj}</p>
                       </div>
                     </div>
-                    <Button variant="outline" className="w-full mt-6">
+                    <Button
+                      variant="outline"
+                      className="w-full mt-6"
+                      onClick={() => navigate('/usuario')}
+                    >
                       <Edit className="h-4 w-4 mr-2" />
                       Editar Informações
                     </Button>
