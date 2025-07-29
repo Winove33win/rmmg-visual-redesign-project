@@ -74,4 +74,5 @@ Read more here: [Setting up a custom domain](https://docs.winove.dev/tips-tricks
 
 ## Painel de Controle
 
-O painel de controle protegido por senha está disponível em `/painel-de-controle`. Utilize o e-mail `fernando@winove.com.br` e a senha `rmmg` para acessar e gerenciar o status dos usuários e certificados.
+O painel de controle protegido por senha está disponível em `/painel-de-controle`. Utilize o e-mail `fernando@winove.com.br` e a senha `rmmg` para acessar e gerenciar o status dos usuários.
+Agora é possível anexar múltiplos documentos para cada usuário e atribuir formulários específicos conforme necessário.

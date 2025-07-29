@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -8,17 +8,40 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 
+interface DocumentData {
+  id: number;
+  name: string;
+}
+
 interface UserData {
   id: number;
   name: string;
   email: string;
   status: string;
-  certificates: number;
+  documents: DocumentData[];
+  forms: string[];
 }
 
 const initialData: UserData[] = [
-  { id: 1, name: 'Fernando', email: 'fernando@winove.com.br', status: 'Concluído', certificates: 5 },
-  { id: 2, name: 'Maria', email: 'maria@example.com', status: 'Em análise', certificates: 2 }
+  {
+    id: 1,
+    name: 'Fernando',
+    email: 'fernando@winove.com.br',
+    status: 'Concluído',
+    documents: [
+      { id: 1, name: 'certificado1.pdf' },
+      { id: 2, name: 'formularioA.pdf' }
+    ],
+    forms: []
+  },
+  {
+    id: 2,
+    name: 'Maria',
+    email: 'maria@example.com',
+    status: 'Em análise',
+    documents: [],
+    forms: []
+  }
 ];
 
 export default function PainelDeControle() {
@@ -28,6 +51,7 @@ export default function PainelDeControle() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [users, setUsers] = useState<UserData[]>(initialData);
+  const fileInputs = useRef<Record<number, HTMLInputElement | null>>({});
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,8 +61,25 @@ export default function PainelDeControle() {
     }
   };
 
-  const addCertificate = (id: number) => {
-    setUsers(users.map(u => (u.id === id ? { ...u, certificates: u.certificates + 1 } : u)));
+  const addDocuments = (id: number, files: FileList | null) => {
+    if (!files) return;
+    setUsers(users.map(u =>
+      u.id === id
+        ? {
+            ...u,
+            documents: [
+              ...u.documents,
+              ...Array.from(files).map((f, index) => ({ id: Date.now() + index, name: f.name }))
+            ]
+          }
+        : u
+    ));
+  };
+
+  const addForm = (id: number) => {
+    const name = window.prompt('Nome do formulário');
+    if (!name) return;
+    setUsers(users.map(u => (u.id === id ? { ...u, forms: [...u.forms, name] } : u)));
   };
 
   const updateStatus = (id: number, status: string) => {
@@ -86,7 +127,8 @@ export default function PainelDeControle() {
                     <TableHead>Nome</TableHead>
                     <TableHead>Email</TableHead>
                     <TableHead>Status</TableHead>
-                    <TableHead>Certificados</TableHead>
+                    <TableHead>Documentos</TableHead>
+                    <TableHead>Formulários</TableHead>
                     <TableHead>Ações</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -107,11 +149,24 @@ export default function PainelDeControle() {
                         </select>
                       </TableCell>
                       <TableCell>
-                        <Badge>{u.certificates}</Badge>
+                        <Badge>{u.documents.length}</Badge>
+                        <input
+                          type="file"
+                          multiple
+                          className="hidden"
+                          ref={el => (fileInputs.current[u.id] = el)}
+                          onChange={e => addDocuments(u.id, e.target.files)}
+                        />
                       </TableCell>
                       <TableCell>
-                        <Button size="sm" onClick={() => addCertificate(u.id)}>
-                          Adicionar Certificado
+                        <Badge>{u.forms.length}</Badge>
+                      </TableCell>
+                      <TableCell className="space-x-2">
+                        <Button size="sm" onClick={() => fileInputs.current[u.id]?.click()}>
+                          Adicionar Documento
+                        </Button>
+                        <Button size="sm" variant="secondary" onClick={() => addForm(u.id)}>
+                          Adicionar Formulário
                         </Button>
                       </TableCell>
                     </TableRow>
