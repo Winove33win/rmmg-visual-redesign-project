@@ -20,6 +20,7 @@ import PEPRuido from "./pages/PEPRuido";
 import PEPOleos from "./pages/PEPOleos";
 import PEPQuimicaAnalitica from "./pages/PEPQuimicaAnalitica";
 import PEPMetrologiaDimensional from "./pages/PEPMetrologiaDimensional";
+import MemberProfile from "./pages/MemberProfile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ const App = () => (
             <Route path="/area-restrita" element={<AreaRestrita />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/usuario" element={<User />} />
+            <Route path="/perfil" element={<MemberProfile />} />
             <Route path="/peps" element={<PEPs />} />
             <Route path="/peps/microbiologia" element={<PEPMicrobiologia />} />
             <Route path="/peps/ruido" element={<PEPRuido />} />
