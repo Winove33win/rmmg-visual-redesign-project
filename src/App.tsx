@@ -14,6 +14,11 @@ import Auth from "./pages/Auth";
 import PEPs from "./pages/PEPs";
 import PEPForm from "./pages/PEPForm";
 import PEPProgram from "./pages/PEPProgram";
+import PEPMicrobiologia from "./pages/PEPMicrobiologia";
+import PEPRuido from "./pages/PEPRuido";
+import PEPOleos from "./pages/PEPOleos";
+import PEPQuimicaAnalitica from "./pages/PEPQuimicaAnalitica";
+import PEPMetrologiaDimensional from "./pages/PEPMetrologiaDimensional";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +39,11 @@ const App = () => (
             <Route path="/area-restrita" element={<AreaRestrita />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/peps" element={<PEPs />} />
+            <Route path="/peps/microbiologia" element={<PEPMicrobiologia />} />
+            <Route path="/peps/ruido" element={<PEPRuido />} />
+            <Route path="/peps/oleos" element={<PEPOleos />} />
+            <Route path="/peps/quimica-analitica" element={<PEPQuimicaAnalitica />} />
+            <Route path="/peps/metrologia-dimensional" element={<PEPMetrologiaDimensional />} />
             <Route path="/pep-program/:id" element={<PEPProgram />} />
             <Route path="/pep/:id" element={<PEPForm />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

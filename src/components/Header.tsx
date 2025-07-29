@@ -53,13 +53,25 @@ const Header = () => {
         { label: "Metrologia Térmica", href: "/areas-tecnicas/termica" }
       ]
     },
-    { 
-      label: "Serviços", 
+    {
+      label: "Serviços",
       href: "/servicos",
       submenu: [
         { label: "Calibração", href: "/servicos/calibracao" },
         { label: "Ensaios", href: "/servicos/ensaios" },
         { label: "Consultoria", href: "/servicos/consultoria" }
+      ]
+    },
+    {
+      label: "PEP",
+      href: "/peps",
+      submenu: [
+        { label: "Programas Ativos", href: "/peps" },
+        { label: "PEP Microbiologia", href: "/peps/microbiologia" },
+        { label: "PEP Ruído", href: "/peps/ruido" },
+        { label: "PEP Óleos", href: "/peps/oleos" },
+        { label: "PEP Química Analítica", href: "/peps/quimica-analitica" },
+        { label: "PEP Metrologia Dimensional", href: "/peps/metrologia-dimensional" }
       ]
     },
     { label: "Blog", href: "/blog" },
@@ -130,11 +142,6 @@ const Header = () => {
             </NavigationMenuList>
           </NavigationMenu>
 
-          {/* CTA Button */}
-          <Button className="hidden lg:flex bg-primary hover:bg-primary/90 text-white">
-            Solicitar Orçamento
-          </Button>
-
           {/* Mobile Menu */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="lg:hidden">
@@ -176,9 +183,6 @@ const Header = () => {
                     )}
                   </div>
                 ))}
-                <Button className="w-full bg-primary hover:bg-primary/90 text-white mt-6">
-                  Solicitar Orçamento
-                </Button>
               </div>
             </SheetContent>
           </Sheet>
