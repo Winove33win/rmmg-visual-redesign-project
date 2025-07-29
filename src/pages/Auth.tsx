@@ -10,16 +10,20 @@ import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
 
 export default function Auth() {
-  const { signIn, signUp, user } = useAuth();
+  const { signIn, signUp, user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
-  // Redirecionar se já estiver logado
-  if (user) {
-    navigate('/');
-    return null;
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        Carregando...
+      </div>
+    );
   }
+
+  const alreadyLoggedIn = !!user;
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,7 +46,7 @@ export default function Auth() {
         title: 'Login realizado com sucesso!',
         description: 'Redirecionando...'
       });
-      navigate('/');
+      navigate('/area-restrita');
     }
 
     setLoading(false);
@@ -72,10 +76,20 @@ export default function Auth() {
         variant: 'destructive'
       });
     } else {
-      toast({
-        title: 'Conta criada com sucesso!',
-        description: 'Verifique seu email para confirmar a conta.'
-      });
+      const { error: signInError } = await signIn(email, password);
+      if (signInError) {
+        toast({
+          title: 'Conta criada, mas não foi possível fazer login',
+          description: signInError.message,
+          variant: 'destructive'
+        });
+      } else {
+        toast({
+          title: 'Conta criada com sucesso!',
+          description: 'Redirecionando...'
+        });
+        navigate('/area-restrita');
+      }
     }
 
     setLoading(false);
@@ -87,6 +101,11 @@ export default function Auth() {
       <div className="min-h-screen bg-background py-12">
         <div className="container mx-auto px-4">
           <div className="max-w-md mx-auto">
+            {alreadyLoggedIn && (
+              <div className="mb-4 text-center text-sm text-muted-foreground">
+                Você já está logado. Caso queira trocar de conta, faça login abaixo.
+              </div>
+            )}
             <Tabs defaultValue="signin" className="w-full">
               <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="signin">Entrar</TabsTrigger>
