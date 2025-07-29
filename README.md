@@ -74,4 +74,4 @@ Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-trick
 
 ## Admin Panel
 
-A password-protected admin panel is available at `/admin`. Use the passphrase `RMMG` to log in and manage user statuses and certificates.
+A password-protected admin panel is available at `/admin`. Use the credentials email `rmmg@rmmg.com.br` and password `rmmg` to log in and manage user statuses and certificates.
