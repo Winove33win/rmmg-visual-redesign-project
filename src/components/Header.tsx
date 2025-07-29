@@ -173,7 +173,7 @@ const Header = () => {
           </DropdownMenu>
         ) : (
           <Button asChild variant="ghost" size="sm">
-            <Link to="/auth">Entrar</Link>
+            <Link to="/login">Entrar</Link>
           </Button>
         )}
 
