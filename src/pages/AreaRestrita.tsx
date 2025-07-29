@@ -73,7 +73,7 @@ const AreaRestrita = () => {
   }
 
   // Simular certificados baseados nas participações concluídas
-  const certificates = participations
+  let certificates = participations
     .filter(p => p.status === 'Concluído')
     .map(p => ({
       id: p.id,
@@ -83,6 +83,19 @@ const AreaRestrita = () => {
       type: 'PDF',
       size: '1.2 MB'
     }));
+
+  // Inserir certificados de exemplo para o usuário fernando@winove.com.br
+  if (user?.email === 'fernando@winove.com.br' && certificates.length < 5) {
+    const extra = Array.from({ length: 5 - certificates.length }, (_, i) => ({
+      id: `demo-${i}`,
+      name: `Certificado - Exemplo ${i + 1}`,
+      issueDate: new Date().toISOString(),
+      status: 'Válido',
+      type: 'PDF',
+      size: '1.2 MB'
+    }));
+    certificates = [...certificates, ...extra];
+  }
 
   const filteredCertificates = certificates.filter(cert =>
     cert.name.toLowerCase().includes(searchTerm.toLowerCase())

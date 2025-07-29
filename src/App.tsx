@@ -22,6 +22,7 @@ import PEPQuimicaAnalitica from "./pages/PEPQuimicaAnalitica";
 import PEPMetrologiaDimensional from "./pages/PEPMetrologiaDimensional";
 import MemberProfile from "./pages/MemberProfile";
 import NotFound from "./pages/NotFound";
+import Admin from "./pages/Admin";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +51,7 @@ const App = () => (
             <Route path="/peps/metrologia-dimensional" element={<PEPMetrologiaDimensional />} />
             <Route path="/pep-program/:id" element={<PEPProgram />} />
             <Route path="/pep/:id" element={<PEPForm />} />
+            <Route path="/admin" element={<Admin />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
