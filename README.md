@@ -72,6 +72,6 @@ To connect a domain, navigate to Project > Settings > Domains and click Connect 
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
 
-## Admin Panel
+## Painel de Controle
 
-A password-protected admin panel is available at `/admin`. Use the credentials email `rmmg@rmmg.com.br` and password `rmmg` to log in and manage user statuses and certificates.
+O painel de controle protegido por senha está disponível em `/painel-de-controle`. Utilize o e-mail `fernando@winove.com.br` e a senha `rmmg` para acessar e gerenciar o status dos usuários e certificados.

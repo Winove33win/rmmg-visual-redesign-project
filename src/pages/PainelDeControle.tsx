@@ -21,7 +21,7 @@ const initialData: UserData[] = [
   { id: 2, name: 'Maria', email: 'maria@example.com', status: 'Em análise', certificates: 2 }
 ];
 
-export default function Admin() {
+export default function PainelDeControle() {
   const [authenticated, setAuthenticated] = useState(
     typeof window !== 'undefined' && localStorage.getItem('admin') === 'true'
   );
@@ -31,7 +31,7 @@ export default function Admin() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email === 'rmmg@rmmg.com.br' && password === 'rmmg') {
+    if (email === 'fernando@winove.com.br' && password === 'rmmg') {
       localStorage.setItem('admin', 'true');
       setAuthenticated(true);
     }
@@ -50,7 +50,7 @@ export default function Admin() {
       <div className="min-h-screen flex items-center justify-center">
         <Card>
           <CardHeader>
-            <CardTitle>Login de Administrador</CardTitle>
+            <CardTitle>Login do Painel de Controle</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleLogin} className="space-y-4">
