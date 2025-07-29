@@ -24,6 +24,7 @@ import PEPMetrologiaDimensional from "./pages/PEPMetrologiaDimensional";
 import MemberProfile from "./pages/MemberProfile";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
+import AdminPanel from "./pages/AdminPanel";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +55,7 @@ const App = () => (
             <Route path="/pep-program/:id" element={<PEPProgram />} />
             <Route path="/pep/:id" element={<PEPForm />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/admin-panel" element={<AdminPanel />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
