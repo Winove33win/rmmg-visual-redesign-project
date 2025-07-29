@@ -11,6 +11,7 @@ import Blog from "./pages/Blog";
 import Reconhecimento from "./pages/Reconhecimento";
 import AreaRestrita from "./pages/AreaRestrita";
 import Auth from "./pages/Auth";
+import Login from "./pages/Login";
 import User from "./pages/User";
 import PEPs from "./pages/PEPs";
 import PEPForm from "./pages/PEPForm";
@@ -41,6 +42,7 @@ const App = () => (
             <Route path="/reconhecimento" element={<Reconhecimento />} />
             <Route path="/area-restrita" element={<AreaRestrita />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/usuario" element={<User />} />
             <Route path="/perfil" element={<MemberProfile />} />
             <Route path="/peps" element={<PEPs />} />
