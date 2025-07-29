@@ -91,7 +91,8 @@ const Header = () => {
       ]
     },
     { label: "Blog", href: "/blog" },
-    { label: "Área Restrita PEP", href: "/area-restrita" }
+    { label: "Área Restrita PEP", href: "/area-restrita" },
+    { label: "Painel de Controle", href: "/painel-de-controle" }
   ];
 
   return (
