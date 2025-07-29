@@ -25,13 +25,13 @@ export default function Admin() {
   const [authenticated, setAuthenticated] = useState(
     typeof window !== 'undefined' && localStorage.getItem('admin') === 'true'
   );
-  const [login, setLogin] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [users, setUsers] = useState<UserData[]>(initialData);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (login === 'RMMG' && password === 'RMMG') {
+    if (email === 'rmmg@rmmg.com.br' && password === 'rmmg') {
       localStorage.setItem('admin', 'true');
       setAuthenticated(true);
     }
@@ -55,8 +55,8 @@ export default function Admin() {
           <CardContent>
             <form onSubmit={handleLogin} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="login">Login</Label>
-                <Input id="login" value={login} onChange={e => setLogin(e.target.value)} />
+                <Label htmlFor="email">E-mail</Label>
+                <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password">Senha</Label>
