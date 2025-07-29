@@ -71,3 +71,7 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+## Admin Access
+
+Visit `/admin` in your browser. Use **RMMG** for both login and password. After a successful login the admin dashboard will be unlocked for the session.

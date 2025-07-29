@@ -31,7 +31,9 @@ export default function Admin() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (login === 'RMMG' && password === 'RMMG') {
+    const loginValue = login.trim().toUpperCase();
+    const passValue = password.trim().toUpperCase();
+    if (loginValue === 'RMMG' && passValue === 'RMMG') {
       localStorage.setItem('admin', 'true');
       setAuthenticated(true);
     }
