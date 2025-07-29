@@ -3,6 +3,20 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
+import {
+  Sheet as ProfileSheet,
+  SheetContent as ProfileSheetContent,
+  SheetHeader as ProfileSheetHeader,
+  SheetTitle as ProfileSheetTitle,
+} from "@/components/ui/sheet";
+import { useAuth } from "@/hooks/useAuth";
+import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
@@ -14,6 +28,8 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const { user, profile, signOut } = useAuth();
 
   const menuItems = [
     { label: "Home", href: "/" },
@@ -75,8 +91,7 @@ const Header = () => {
       ]
     },
     { label: "Blog", href: "/blog" },
-    { label: "Área Restrita PEP", href: "/area-restrita" },
-    { label: "Entrar", href: "/auth" }
+    { label: "Área Restrita PEP", href: "/area-restrita" }
   ];
 
   return (
@@ -140,11 +155,52 @@ const Header = () => {
                   )}
                 </NavigationMenuItem>
               ))}
-            </NavigationMenuList>
-          </NavigationMenu>
+          </NavigationMenuList>
+        </NavigationMenu>
 
-          {/* Mobile Menu */}
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+        {user ? (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="sm">{user.email}</Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onSelect={() => setProfileOpen(true)}>
+                Meu Cadastro
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onSelect={signOut}>Deslogar</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ) : (
+          <Button asChild variant="ghost" size="sm">
+            <Link to="/auth">Entrar</Link>
+          </Button>
+        )}
+
+        <ProfileSheet open={profileOpen} onOpenChange={setProfileOpen}>
+          <ProfileSheetContent side="right">
+            <ProfileSheetHeader>
+              <ProfileSheetTitle>Informações de Cadastro</ProfileSheetTitle>
+            </ProfileSheetHeader>
+            <div className="space-y-2 py-4">
+              <p>
+                <strong>Nome:</strong> {profile?.nome_completo}
+              </p>
+              <p>
+                <strong>Email:</strong> {profile?.email}
+              </p>
+              <p>
+                <strong>Telefone:</strong> {profile?.telefone || 'Não informado'}
+              </p>
+              <p>
+                <strong>CNPJ:</strong> {profile?.cnpj}
+              </p>
+            </div>
+          </ProfileSheetContent>
+        </ProfileSheet>
+
+        {/* Mobile Menu */}
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="lg:hidden">
               <Button variant="ghost" size="sm">
                 <Menu className="h-5 w-5" />
