@@ -1,3 +1,7 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
 import { Lock, User, Calendar, Download, BarChart3, Bell, Settings, ArrowRight, FileText, Award, Search, Archive, Edit, Phone, Mail, Building } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -8,68 +12,81 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { useToast } from "@/hooks/use-toast";
 
 const AreaRestrita = () => {
-  const userInfo = {
-    name: "João Silva Santos",
-    email: "joao.silva@empresa.com.br",
-    phone: "(31) 99999-9999",
-    cnpj: "12.345.678/0001-90"
+  const { user, profile, loading } = useAuth();
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const [participations, setParticipations] = useState<any[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/auth');
+      return;
+    }
+    fetchParticipations();
+  }, [user]);
+
+  const fetchParticipations = async () => {
+    if (!user) return;
+
+    try {
+      const { data, error } = await supabase
+        .from('participacoes')
+        .select(`
+          *,
+          peps (
+            nome,
+            descricao
+          )
+        `)
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setParticipations(data || []);
+    } catch (error: any) {
+      toast({
+        title: 'Erro ao carregar participações',
+        description: error.message,
+        variant: 'destructive'
+      });
+    }
   };
 
-  const certificates = [
-    {
-      id: 1,
-      name: "Certificado - PEP Microbiologia",
-      issueDate: "2025-06-30",
-      status: "Válido",
-      type: "PDF",
-      size: "1.2 MB"
-    },
-    {
-      id: 2,
-      name: "Certificado - PEP Ruído Ambiental",
-      issueDate: "2025-03-15",
-      status: "Válido",
-      type: "PDF",
-      size: "980 KB"
-    },
-    {
-      id: 3,
-      name: "Certificado - PEP Análise Química",
-      issueDate: "2024-12-20",
-      status: "Expirado",
-      type: "PDF",
-      size: "1.1 MB"
-    }
-  ];
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <div className="flex items-center justify-center h-64">
+          <p>Carregando...</p>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
-  const participationHistory = [
-    {
-      id: 1,
-      program: "PEP Microbiologia",
-      participationDate: "2025-06-30",
-      status: "Concluído"
-    },
-    {
-      id: 2,
-      program: "PEP Ruído Ambiental",
-      participationDate: "2025-03-15",
-      status: "Concluído"
-    },
-    {
-      id: 3,
-      program: "PEP Óleos e Graxas",
-      participationDate: "2024-12-01",
-      status: "Em análise"
-    },
-    {
-      id: 4,
-      program: "PEP Análise Química",
-      participationDate: "2024-09-15",
-      status: "Concluído"
-    }
-  ];
+  if (!user) {
+    return null;
+  }
+
+  // Simular certificados baseados nas participações concluídas
+  const certificates = participations
+    .filter(p => p.status === 'Concluído')
+    .map(p => ({
+      id: p.id,
+      name: `Certificado - ${p.peps?.nome}`,
+      issueDate: p.data_participacao,
+      status: 'Válido',
+      type: 'PDF',
+      size: '1.2 MB'
+    }));
+
+  const filteredCertificates = certificates.filter(cert =>
+    cert.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -111,28 +128,28 @@ const AreaRestrita = () => {
                     <div className="space-y-3">
                       <div>
                         <Label className="text-sm font-medium text-muted-foreground">Nome Completo</Label>
-                        <p className="text-sm font-semibold">{userInfo.name}</p>
+                        <p className="text-sm font-semibold">{profile?.nome_completo}</p>
                       </div>
                       <div>
                         <Label className="text-sm font-medium text-muted-foreground flex items-center gap-1">
                           <Mail className="h-3 w-3" />
                           E-mail
                         </Label>
-                        <p className="text-sm">{userInfo.email}</p>
+                        <p className="text-sm">{profile?.email}</p>
                       </div>
                       <div>
                         <Label className="text-sm font-medium text-muted-foreground flex items-center gap-1">
                           <Phone className="h-3 w-3" />
                           Telefone
                         </Label>
-                        <p className="text-sm">{userInfo.phone}</p>
+                        <p className="text-sm">{profile?.telefone || 'Não informado'}</p>
                       </div>
                       <div>
                         <Label className="text-sm font-medium text-muted-foreground flex items-center gap-1">
                           <Building className="h-3 w-3" />
                           CNPJ
                         </Label>
-                        <p className="text-sm">{userInfo.cnpj}</p>
+                        <p className="text-sm">{profile?.cnpj}</p>
                       </div>
                     </div>
                     <Button variant="outline" className="w-full mt-6">
@@ -153,6 +170,8 @@ const AreaRestrita = () => {
                     <Input 
                       placeholder="Buscar certificados..." 
                       className="pl-10"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
                     />
                   </div>
                   <Button className="bg-primary hover:bg-primary/90 text-white">
@@ -170,9 +189,9 @@ const AreaRestrita = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    {certificates.length > 0 ? (
+                    {filteredCertificates.length > 0 ? (
                       <div className="space-y-4">
-                        {certificates.map((certificate) => (
+                        {filteredCertificates.map((certificate) => (
                           <div 
                             key={certificate.id}
                             className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors"
@@ -208,7 +227,7 @@ const AreaRestrita = () => {
                         <FileText className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                         <h3 className="text-lg font-semibold mb-2">Nenhum certificado encontrado</h3>
                         <p className="text-muted-foreground">
-                          Você ainda não possui certificados emitidos.
+                          Você ainda não possui certificados emitidos ou nenhum corresponde à sua busca.
                         </p>
                       </div>
                     )}
@@ -224,7 +243,7 @@ const AreaRestrita = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    {participationHistory.length > 0 ? (
+                    {participations.length > 0 ? (
                       <div className="overflow-x-auto">
                         <Table>
                           <TableHeader>
@@ -235,13 +254,13 @@ const AreaRestrita = () => {
                             </TableRow>
                           </TableHeader>
                           <TableBody>
-                            {participationHistory.map((participation) => (
+                            {participations.map((participation) => (
                               <TableRow key={participation.id} className="hover:bg-muted/50">
                                 <TableCell className="font-medium">
-                                  {participation.program}
+                                  {participation.peps?.nome}
                                 </TableCell>
                                 <TableCell>
-                                  {new Date(participation.participationDate).toLocaleDateString('pt-BR')}
+                                  {new Date(participation.data_participacao).toLocaleDateString('pt-BR')}
                                 </TableCell>
                                 <TableCell>
                                   <Badge 
@@ -262,9 +281,12 @@ const AreaRestrita = () => {
                       <div className="text-center py-8">
                         <Calendar className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                         <h3 className="text-lg font-semibold mb-2">Nenhuma participação encontrada</h3>
-                        <p className="text-muted-foreground">
+                        <p className="text-muted-foreground mb-4">
                           Você ainda não possui histórico de participações.
                         </p>
+                        <Button onClick={() => navigate('/peps')}>
+                          Ver Programas Disponíveis
+                        </Button>
                       </div>
                     )}
                   </CardContent>
