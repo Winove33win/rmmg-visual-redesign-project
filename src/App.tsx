@@ -13,6 +13,7 @@ import AreaRestrita from "./pages/AreaRestrita";
 import Auth from "./pages/Auth";
 import PEPs from "./pages/PEPs";
 import PEPForm from "./pages/PEPForm";
+import PEPProgram from "./pages/PEPProgram";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ const App = () => (
             <Route path="/area-restrita" element={<AreaRestrita />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/peps" element={<PEPs />} />
+            <Route path="/pep-program/:id" element={<PEPProgram />} />
             <Route path="/pep/:id" element={<PEPForm />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
