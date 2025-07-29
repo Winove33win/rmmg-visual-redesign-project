@@ -1,6 +1,7 @@
 import { MapPin, Phone, Mail, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const quickLinks = [
@@ -60,13 +61,13 @@ const Footer = () => {
             <h4 className="text-lg font-semibold">Links Rápidos</h4>
             <div className="space-y-2">
               {quickLinks.map((link, index) => (
-                <a
+                <Link
                   key={index}
-                  href={link.href}
+                  to={link.href}
                   className="block text-sm opacity-80 hover:opacity-100 hover:text-primary transition-colors"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -76,13 +77,13 @@ const Footer = () => {
             <h4 className="text-lg font-semibold">Nossos Serviços</h4>
             <div className="space-y-2">
               {services.map((service, index) => (
-                <a
+                <Link
                   key={index}
-                  href={service.href}
+                  to={service.href}
                   className="block text-sm opacity-80 hover:opacity-100 hover:text-primary transition-colors"
                 >
                   {service.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -122,9 +123,9 @@ const Footer = () => {
             © 2024 RMMG - Rede Metrológica de Minas Gerais. Todos os direitos reservados.
           </div>
           <div className="flex space-x-6 text-sm opacity-80">
-            <a href="/privacidade" className="hover:opacity-100">Política de Privacidade</a>
-            <a href="/termos" className="hover:opacity-100">Termos de Uso</a>
-            <a href="/cookies" className="hover:opacity-100">Cookies</a>
+            <Link to="/privacidade" className="hover:opacity-100">Política de Privacidade</Link>
+            <Link to="/termos" className="hover:opacity-100">Termos de Uso</Link>
+            <Link to="/cookies" className="hover:opacity-100">Cookies</Link>
           </div>
         </div>
       </div>
