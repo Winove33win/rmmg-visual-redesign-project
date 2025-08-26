@@ -9,6 +9,13 @@ import Sebraetec from "./pages/Sebraetec";
 import Treinamentos from "./pages/Treinamentos";
 import Blog from "./pages/Blog";
 import Reconhecimento from "./pages/Reconhecimento";
+import LaboratoriosReconhecidos from "./pages/LaboratoriosReconhecidos";
+import LaboratoriosEmProcesso from "./pages/LaboratoriosEmProcesso";
+import InformativoReconhecimento from "./pages/InformativoReconhecimento";
+import Biblioteca from "./pages/Biblioteca";
+import Afiliacao from "./pages/Afiliacao";
+import Consultoria from "./pages/Consultoria";
+import AuditoriaInterna from "./pages/AuditoriaInterna";
 import AreaRestrita from "./pages/AreaRestrita";
 import Auth from "./pages/Auth";
 import Login from "./pages/Login";
@@ -40,6 +47,13 @@ const App = () => (
             <Route path="/treinamentos" element={<Treinamentos />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/reconhecimento" element={<Reconhecimento />} />
+            <Route path="/reconhecimento/laboratorios-reconhecidos" element={<LaboratoriosReconhecidos />} />
+            <Route path="/reconhecimento/laboratorios-em-processo" element={<LaboratoriosEmProcesso />} />
+            <Route path="/reconhecimento/informativo" element={<InformativoReconhecimento />} />
+            <Route path="/reconhecimento/biblioteca" element={<Biblioteca />} />
+            <Route path="/afiliacao" element={<Afiliacao />} />
+            <Route path="/consultoria" element={<Consultoria />} />
+            <Route path="/auditoria" element={<AuditoriaInterna />} />
             <Route path="/area-restrita" element={<AreaRestrita />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/login" element={<Login />} />
