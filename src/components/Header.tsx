@@ -35,48 +35,33 @@ const Header = () => {
     { label: "Home", href: "/" },
     { 
       label: "Sebraetec", 
-      href: "/sebraetec",
-      submenu: [
-        { label: "Sobre o Programa", href: "/sebraetec/sobre" },
-        { label: "Como Participar", href: "/sebraetec/participar" },
-        { label: "Resultados", href: "/sebraetec/resultados" }
-      ]
+      href: "/sebraetec"
     },
     { 
-      label: "Informativo – Reconhecimento", 
+      label: "Reconhecimento", 
       href: "/reconhecimento",
       submenu: [
-        { label: "CGCRE", href: "/reconhecimento/cgcre" },
-        { label: "Acreditação", href: "/reconhecimento/acreditacao" },
-        { label: "Competências", href: "/reconhecimento/competencias" }
+        { label: "Laboratórios Reconhecidos", href: "/reconhecimento/laboratorios-reconhecidos" },
+        { label: "Laboratórios em Processo", href: "/reconhecimento/laboratorios-em-processo" },
+        { label: "Informativo", href: "/reconhecimento/informativo" },
+        { label: "Biblioteca", href: "/reconhecimento/biblioteca" }
       ]
     },
     { 
       label: "Treinamentos", 
-      href: "/treinamentos",
-      submenu: [
-        { label: "Cursos Disponíveis", href: "/treinamentos/cursos" },
-        { label: "Calendário", href: "/treinamentos/calendario" },
-        { label: "Certificações", href: "/treinamentos/certificacoes" }
-      ]
+      href: "/treinamentos"
     },
     { 
-      label: "Áreas Técnicas", 
-      href: "/areas-tecnicas",
-      submenu: [
-        { label: "Metrologia Dimensional", href: "/areas-tecnicas/dimensional" },
-        { label: "Metrologia Elétrica", href: "/areas-tecnicas/eletrica" },
-        { label: "Metrologia Térmica", href: "/areas-tecnicas/termica" }
-      ]
+      label: "Afiliação", 
+      href: "/afiliacao"
     },
     {
-      label: "Serviços",
-      href: "/servicos",
-      submenu: [
-        { label: "Calibração", href: "/servicos/calibracao" },
-        { label: "Ensaios", href: "/servicos/ensaios" },
-        { label: "Consultoria", href: "/servicos/consultoria" }
-      ]
+      label: "Consultoria",
+      href: "/consultoria"
+    },
+    {
+      label: "Auditoria",
+      href: "/auditoria"
     },
     {
       label: "PEP",
