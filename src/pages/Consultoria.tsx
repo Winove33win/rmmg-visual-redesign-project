@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Settings } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Consultoria = () => {
   const metodologia = [
@@ -40,27 +41,33 @@ const Consultoria = () => {
   const servicos = [
     {
       titulo: "GESTÃO DA QUALIDADE PARA LABORATÓRIOS - ABNT NBR ISO/IEC 17025",
-      imagem: "/src/assets/servicos/gestao-qualidade.jpg"
+      imagem: "/src/assets/servicos/gestao-qualidade.jpg",
+      link: "/servicos/gestao-qualidade-laboratorios"
     },
     {
       titulo: "SISTEMA DE GESTÃO DA QUALIDADE", 
-      imagem: "/src/assets/servicos/sistema-gestao.jpg"
+      imagem: "/src/assets/servicos/sistema-gestao.jpg",
+      link: "/servicos/sistema-gestao-qualidade"
     },
     {
       titulo: "PLANO DE ADERÊNCIA AOS REQUISITOS NORMATIVOS",
-      imagem: "/src/assets/servicos/plano-aderencia.jpg"
+      imagem: "/src/assets/servicos/plano-aderencia.jpg",
+      link: "/servicos/plano-aderencia"
     },
     {
       titulo: "GESTÃO DE PROJETOS E MELHORIA DE PROCESSOS",
-      imagem: "/src/assets/servicos/gestao-projetos.jpg"
+      imagem: "/src/assets/servicos/gestao-projetos.jpg",
+      link: "/servicos/gestao-projetos"
     },
     {
       titulo: "ADEQUAÇÃO E MELHORIA DE PROCESSOS PARA ÁREA DE ALIMENTOS",
-      imagem: "/src/assets/servicos/adequacao-alimentos.jpg"
+      imagem: "/src/assets/servicos/adequacao-alimentos.jpg",
+      link: "/servicos/adequacao-alimentos"
     },
     {
       titulo: "ADEQUAÇÃO À LEI GERAL DE PROTEÇÃO DE DADOS - LGPD",
-      imagem: "/src/assets/servicos/lgpd.jpg"
+      imagem: "/src/assets/servicos/lgpd.jpg",
+      link: "/servicos/lgpd"
     }
   ];
 
@@ -150,9 +157,11 @@ const Consultoria = () => {
                   </div>
                   <CardContent className="p-6 text-center">
                     <h3 className="font-bold text-foreground mb-4">{servico.titulo}</h3>
-                    <Button className="bg-primary hover:bg-primary/90">
-                      SAIBA MAIS
-                    </Button>
+                    <Link to={servico.link}>
+                      <Button className="bg-primary hover:bg-primary/90">
+                        SAIBA MAIS
+                      </Button>
+                    </Link>
                   </CardContent>
                 </Card>
               ))}

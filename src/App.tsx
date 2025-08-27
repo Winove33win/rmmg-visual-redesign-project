@@ -31,6 +31,15 @@ import PEPMetrologiaDimensional from "./pages/PEPMetrologiaDimensional";
 import MemberProfile from "./pages/MemberProfile";
 import NotFound from "./pages/NotFound";
 import PainelDeControle from "./pages/PainelDeControle";
+import { Suspense, lazy } from "react";
+
+const GestaoQualidadeLaboratorios = lazy(() => import("./pages/servicos/GestaoQualidadeLaboratorios"));
+const SistemaGestaoQualidade = lazy(() => import("./pages/servicos/SistemaGestaoQualidade"));
+const PlanoAderencia = lazy(() => import("./pages/servicos/PlanoAderencia"));
+const GestaoProjetos = lazy(() => import("./pages/servicos/GestaoProjetos"));
+const AdequacaoAlimentos = lazy(() => import("./pages/servicos/AdequacaoAlimentos"));
+const LGPD = lazy(() => import("./pages/servicos/LGPD"));
+const PoliticasPrivacidade = lazy(() => import("./pages/PoliticasPrivacidade"));
 
 const queryClient = new QueryClient();
 
@@ -68,6 +77,13 @@ const App = () => (
             <Route path="/pep-program/:id" element={<PEPProgram />} />
             <Route path="/pep/:id" element={<PEPForm />} />
             <Route path="/painel-de-controle" element={<PainelDeControle />} />
+            <Route path="/servicos/gestao-qualidade-laboratorios" element={<Suspense fallback={<div>Loading...</div>}><GestaoQualidadeLaboratorios /></Suspense>} />
+            <Route path="/servicos/sistema-gestao-qualidade" element={<Suspense fallback={<div>Loading...</div>}><SistemaGestaoQualidade /></Suspense>} />
+            <Route path="/servicos/plano-aderencia" element={<Suspense fallback={<div>Loading...</div>}><PlanoAderencia /></Suspense>} />
+            <Route path="/servicos/gestao-projetos" element={<Suspense fallback={<div>Loading...</div>}><GestaoProjetos /></Suspense>} />
+            <Route path="/servicos/adequacao-alimentos" element={<Suspense fallback={<div>Loading...</div>}><AdequacaoAlimentos /></Suspense>} />
+            <Route path="/servicos/lgpd" element={<Suspense fallback={<div>Loading...</div>}><LGPD /></Suspense>} />
+            <Route path="/politicas-privacidade" element={<Suspense fallback={<div>Loading...</div>}><PoliticasPrivacidade /></Suspense>} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
