@@ -40,6 +40,7 @@ const GestaoProjetos = lazy(() => import("./pages/servicos/GestaoProjetos"));
 const AdequacaoAlimentos = lazy(() => import("./pages/servicos/AdequacaoAlimentos"));
 const LGPD = lazy(() => import("./pages/servicos/LGPD"));
 const PoliticasPrivacidade = lazy(() => import("./pages/PoliticasPrivacidade"));
+const QuemSomos = lazy(() => import("./pages/QuemSomos"));
 
 const queryClient = new QueryClient();
 
@@ -84,6 +85,7 @@ const App = () => (
             <Route path="/servicos/adequacao-alimentos" element={<Suspense fallback={<div>Loading...</div>}><AdequacaoAlimentos /></Suspense>} />
             <Route path="/servicos/lgpd" element={<Suspense fallback={<div>Loading...</div>}><LGPD /></Suspense>} />
             <Route path="/politicas-privacidade" element={<Suspense fallback={<div>Loading...</div>}><PoliticasPrivacidade /></Suspense>} />
+            <Route path="/quem-somos" element={<Suspense fallback={<div>Loading...</div>}><QuemSomos /></Suspense>} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
