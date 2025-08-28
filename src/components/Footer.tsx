@@ -6,17 +6,18 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   const quickLinks = [
     { label: "Home", href: "/" },
+    { label: "Quem Somos", href: "/quem-somos" },
     { label: "Sebraetec", href: "/sebraetec" },
     { label: "Reconhecimento", href: "/reconhecimento" },
     { label: "Treinamentos", href: "/treinamentos" },
-    { label: "Serviços", href: "/servicos" },
+    { label: "Consultoria", href: "/consultoria" },
     { label: "Blog", href: "/blog" }
   ];
 
   const services = [
-    { label: "Calibração de Instrumentos", href: "/servicos/calibracao" },
-    { label: "Ensaios de Proficiência", href: "/servicos/ensaios" },
-    { label: "Consultoria Técnica", href: "/servicos/consultoria" },
+    { label: "Gestão da Qualidade", href: "/consultoria" },
+    { label: "Auditoria Interna", href: "/auditoria" },
+    { label: "Programa de Ensaios (PEP)", href: "/peps" },
     { label: "Treinamentos Técnicos", href: "/treinamentos" },
     { label: "Área Restrita PEP", href: "/area-restrita" }
   ];
@@ -95,9 +96,9 @@ const Footer = () => {
               <div className="flex items-start space-x-3">
                 <MapPin className="h-4 w-4 mt-1 opacity-80" />
                 <div className="text-sm opacity-80">
-                  <p>Rua Exemplo, 123</p>
-                  <p>Belo Horizonte - MG</p>
-                  <p>CEP: 30000-000</p>
+                  <p>Rua Marajó, 1181</p>
+                  <p>Barro Preto, Belo Horizonte - MG</p>
+                  <p>CEP: 30112-000</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
@@ -106,7 +107,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 opacity-80" />
-                <span className="text-sm opacity-80">contato@rmmg.org.br</span>
+                <span className="text-sm opacity-80">rmmg@rmmg.org.br</span>
               </div>
             </div>
             <Button className="w-full bg-primary hover:bg-primary/90 text-white">
@@ -123,9 +124,9 @@ const Footer = () => {
             © 2024 RMMG - Rede Metrológica de Minas Gerais. Todos os direitos reservados.
           </div>
           <div className="flex space-x-6 text-sm opacity-80">
-            <Link to="/privacidade" className="hover:opacity-100">Política de Privacidade</Link>
-            <Link to="/termos" className="hover:opacity-100">Termos de Uso</Link>
-            <Link to="/cookies" className="hover:opacity-100">Cookies</Link>
+            <Link to="/politicas-privacidade" className="hover:opacity-100">Política de Privacidade</Link>
+            <Link to="/quem-somos" className="hover:opacity-100">Quem Somos</Link>
+            <Link to="/reconhecimento" className="hover:opacity-100">Reconhecimento</Link>
           </div>
         </div>
       </div>

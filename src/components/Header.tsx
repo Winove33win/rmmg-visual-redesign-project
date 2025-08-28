@@ -34,6 +34,10 @@ const Header = () => {
   const menuItems = [
     { label: "Home", href: "/" },
     { 
+      label: "Quem Somos", 
+      href: "/quem-somos"
+    },
+    { 
       label: "Sebraetec", 
       href: "/sebraetec"
     },
