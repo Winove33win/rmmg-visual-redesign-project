@@ -1,4 +1,5 @@
 import { BookOpen, Users, Award, Clock, Calendar, Star } from "lucide-react";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -10,6 +11,7 @@ const Treinamentos = () => {
   const courses = [
     {
       title: "Fundamentos de Metrologia",
+      slug: "fundamentos-metrologia",
       category: "Básico",
       duration: "16 horas",
       format: "Presencial",
@@ -20,6 +22,7 @@ const Treinamentos = () => {
     },
     {
       title: "ISO 9001:2015 - Implementação",
+      slug: "iso-9001-implementacao",
       category: "Intermediário",
       duration: "24 horas",
       format: "Híbrido",
@@ -30,6 +33,7 @@ const Treinamentos = () => {
     },
     {
       title: "Calibração de Instrumentos",
+      slug: "calibracao-instrumentos",
       category: "Avançado",
       duration: "32 horas",
       format: "Presencial",
@@ -40,6 +44,7 @@ const Treinamentos = () => {
     },
     {
       title: "Estatística Aplicada à Metrologia",
+      slug: "estatistica-metrologia",
       category: "Avançado",
       duration: "20 horas",
       format: "Online",
@@ -215,7 +220,12 @@ const Treinamentos = () => {
                           </div>
                         </div>
                         
-                        <Button className="w-full">Inscrever-se</Button>
+                        <div className="flex gap-2">
+                          <Button asChild className="flex-1">
+                            <Link to={`/treinamento/${course.slug}`}>Ver Detalhes</Link>
+                          </Button>
+                          <Button variant="outline" className="flex-1">Inscrever-se</Button>
+                        </div>
                       </CardContent>
                     </Card>
                   ))}

@@ -7,6 +7,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 import Index from "./pages/Index";
 import Sebraetec from "./pages/Sebraetec";
 import Treinamentos from "./pages/Treinamentos";
+import TreinamentoDetalhes from "./pages/TreinamentoDetalhes";
 import Blog from "./pages/Blog";
 import Reconhecimento from "./pages/Reconhecimento";
 import LaboratoriosReconhecidos from "./pages/LaboratoriosReconhecidos";
@@ -54,7 +55,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/sebraetec" element={<Sebraetec />} />
-            <Route path="/treinamentos" element={<Treinamentos />} />
+          <Route path="/treinamentos" element={<Treinamentos />} />
+          <Route path="/treinamento/:slug" element={<TreinamentoDetalhes />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/reconhecimento" element={<Reconhecimento />} />
             <Route path="/reconhecimento/laboratorios-reconhecidos" element={<LaboratoriosReconhecidos />} />
