@@ -33,54 +33,8 @@ const Header = () => {
 
   const menuItems = [
     { label: "Home", href: "/" },
-    { 
-      label: "Quem Somos", 
-      href: "/quem-somos"
-    },
-    { 
-      label: "Sebraetec", 
-      href: "/sebraetec"
-    },
-    { 
-      label: "Reconhecimento", 
-      href: "/reconhecimento",
-      submenu: [
-        { label: "Laboratórios Reconhecidos", href: "/reconhecimento/laboratorios-reconhecidos" },
-        { label: "Laboratórios em Processo", href: "/reconhecimento/laboratorios-em-processo" },
-        { label: "Informativo", href: "/reconhecimento/informativo" },
-        { label: "Biblioteca", href: "/reconhecimento/biblioteca" }
-      ]
-    },
-    { 
-      label: "Treinamentos", 
-      href: "/treinamentos"
-    },
-    { 
-      label: "Afiliação", 
-      href: "/afiliacao"
-    },
-    {
-      label: "Consultoria",
-      href: "/consultoria"
-    },
-    {
-      label: "Auditoria",
-      href: "/auditoria"
-    },
-    {
-      label: "PEP",
-      href: "/peps",
-      submenu: [
-        { label: "Programas Ativos", href: "/peps" },
-        { label: "PEP Microbiologia", href: "/peps/microbiologia" },
-        { label: "PEP Ruído", href: "/peps/ruido" },
-        { label: "PEP Óleos", href: "/peps/oleos" },
-        { label: "PEP Química Analítica", href: "/peps/quimica-analitica" },
-        { label: "PEP Metrologia Dimensional", href: "/peps/metrologia-dimensional" }
-      ]
-    },
-    { label: "Blog", href: "/blog" },
-    { label: "Área Restrita PEP", href: "/area-restrita" }
+    { label: "Treinamentos", href: "/treinamentos" },
+    { label: "Imersão Indústria", href: "/imersao-industria" },
   ];
 
   return (
