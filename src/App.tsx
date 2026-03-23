@@ -32,6 +32,7 @@ import PEPMetrologiaDimensional from "./pages/PEPMetrologiaDimensional";
 import MemberProfile from "./pages/MemberProfile";
 import NotFound from "./pages/NotFound";
 import PainelDeControle from "./pages/PainelDeControle";
+import ImersaoIndustria from "./pages/ImersaoIndustria";
 import { Suspense, lazy } from "react";
 
 const GestaoQualidadeLaboratorios = lazy(() => import("./pages/servicos/GestaoQualidadeLaboratorios"));
@@ -88,6 +89,7 @@ const App = () => (
             <Route path="/servicos/lgpd" element={<Suspense fallback={<div>Loading...</div>}><LGPD /></Suspense>} />
             <Route path="/politicas-privacidade" element={<Suspense fallback={<div>Loading...</div>}><PoliticasPrivacidade /></Suspense>} />
             <Route path="/quem-somos" element={<Suspense fallback={<div>Loading...</div>}><QuemSomos /></Suspense>} />
+            <Route path="/imersao-industria" element={<ImersaoIndustria />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
