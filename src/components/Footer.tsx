@@ -121,12 +121,24 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="text-sm opacity-80">
-            © 2024 RMMG - Rede Metrológica de Minas Gerais. Todos os direitos reservados.
+            © {new Date().getFullYear()} RMMG - Rede Metrológica de Minas Gerais. Todos os direitos reservados.
           </div>
-          <div className="flex space-x-6 text-sm opacity-80">
+          <div className="flex items-center gap-6 text-sm opacity-80">
             <Link to="/politicas-privacidade" className="hover:opacity-100">Política de Privacidade</Link>
             <Link to="/quem-somos" className="hover:opacity-100">Quem Somos</Link>
             <Link to="/reconhecimento" className="hover:opacity-100">Reconhecimento</Link>
+            <span className="opacity-40">|</span>
+            <span>
+              Desenvolvido por{" "}
+              <a
+                href="https://winove.com.br"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold hover:opacity-100 hover:text-primary transition-colors"
+              >
+                Winove
+              </a>
+            </span>
           </div>
         </div>
       </div>
